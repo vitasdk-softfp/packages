@@ -46,9 +46,6 @@ jobs:
         export VITASDK=/usr/local/vitasdk
         export PATH=$(pwd)/../vita-makepkg:$VITASDK/bin:$PATH
         bash ./build.sh ${{ matrix.package }}
-    - name: Upload package
-      run: |
-        bash ./upload.sh ${{ matrix.package }}
     - name: Rename package
       run: |
         export FILE=`echo ${{ matrix.package }}/*-arm.tar.xz`
@@ -93,7 +90,6 @@ jobs:
       run: |
         export PACKAGE=`echo ${{ matrix.package }} | awk '{print $NF}'`
         echo "PACKAGE=$PACKAGE" >> $GITHUB_ENV
-        bash ./upload.sh $PACKAGE
     - name: Rename package
       run: |
         export FILE=`echo ${{ env.PACKAGE }}/*-arm.tar.xz`
