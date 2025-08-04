@@ -1,6 +1,6 @@
 pkgname=sdl2_image
-pkgver=2.8.8
-pkgrel=1
+pkgver=2.8.4
+pkgrel=2
 license=('Zlib')
 url="https://github.com/libsdl-org/SDL_image"
 source=(
