@@ -1,23 +1,25 @@
 pkgname=sdl2
-pkgver=2.32.8
-pkgrel=1
+pkgver=2.0.23
+pkgrel=8
+gitbranch=vitagl
 url='https://www.libsdl.org'
-source=("https://github.com/libsdl-org/SDL/releases/download/release-${pkgver}/SDL2-${pkgver}.tar.gz")
-sha256sums=('0ca83e9c9b31e18288c7ec811108e58bac1f1bb5ec6577ad386830eac51c787e')
+source=("https://github.com/Northfear/SDL/archive/refs/heads/${gitbranch}.tar.gz")
+sha256sums=(SKIP)
+depends=('vitaGL')
 
 prepare() {
-  cd "SDL2-${pkgver}"
+  cd "SDL-${gitbranch}"
 }
 
 build() {
-  cd "SDL2-${pkgver}"
+  cd "SDL-${gitbranch}"
   mkdir build && cd build
-  cmake .. -DCMAKE_TOOLCHAIN_FILE=$VITASDK/share/vita.toolchain.cmake -DCMAKE_INSTALL_PREFIX=$prefix -DCMAKE_BUILD_TYPE=Release -DSDL_TEST=OFF
+  cmake .. -DCMAKE_TOOLCHAIN_FILE=$VITASDK/share/vita.toolchain.cmake -DCMAKE_INSTALL_PREFIX=$prefix -DCMAKE_BUILD_TYPE=Release -DSDL_TEST=OFF -DVIDEO_VITA_VGL=ON
   make -j$(nproc)
 }
 
 package () {
-  cd "SDL2-${pkgver}"
+  cd "SDL-${gitbranch}"
   cd build
   make DESTDIR=$pkgdir install
 }
