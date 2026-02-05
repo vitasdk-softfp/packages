@@ -3,7 +3,7 @@
 set -e
 
 pushd ..
-git clone --depth=1 https://github.com/vitasdk/vdpm.git
+git clone --depth=1 https://github.com/vitasdk-softfp/vdpm.git
 cd vdpm
 bash bootstrap-vitasdk.sh
 popd
